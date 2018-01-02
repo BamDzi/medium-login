@@ -24,9 +24,9 @@ import org.springframework.data.annotation.Transient;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue//(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
-	private int id;
+	private Long id;
 	@Column(name = "email")
 	@Email(message = "*Please provide a valid Email")
 	@NotEmpty(message = "*Please provide an email")
@@ -43,16 +43,16 @@ public class User {
 	@NotEmpty(message = "*Please provide your last name")
 	private String lastName;
 	@Column(name = "active")
-	private int active;
+	private boolean active;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -88,11 +88,11 @@ public class User {
 		this.email = email;
 	}
 
-	public int getActive() {
+	public boolean getActive() {
 		return active;
 	}
 
-	public void setActive(int active) {
+	public void setActive(boolean active) {
 		this.active = active;
 	}
 
